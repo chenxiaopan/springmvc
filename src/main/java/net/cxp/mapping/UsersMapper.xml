@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.cxp.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="net.cxp.pojo.Users" >
+    <id column="USERID" property="userid" jdbcType="INTEGER" />
+    <result column="UNAME" property="uname" jdbcType="VARCHAR" />
+    <result column="UPWD" property="upwd" jdbcType="VARCHAR" />
+    <result column="USEX" property="usex" jdbcType="VARCHAR" />
+    <result column="UBIRTH" property="ubirth" jdbcType="DATE" />
+    <result column="UTEL" property="utel" jdbcType="VARCHAR" />
+    <result column="UADD" property="uadd" jdbcType="VARCHAR" />
+    <result column="UTYPE" property="utype" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USERID, UNAME, UPWD, USEX, UBIRTH, UTEL, UADD, UTYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERS
+    where USERID = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from USERS
+    where USERID = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.cxp.pojo.Users" >
+    insert into USERS (USERID, UNAME, UPWD, 
+      USEX, UBIRTH, UTEL, UADD, 
+      UTYPE)
+    values (#{userid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR}, 
+      #{usex,jdbcType=VARCHAR}, #{ubirth,jdbcType=DATE}, #{utel,jdbcType=VARCHAR}, #{uadd,jdbcType=VARCHAR}, 
+      #{utype,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="net.cxp.pojo.Users" >
+    insert into USERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="uname != null" >
+        UNAME,
+      </if>
+      <if test="upwd != null" >
+        UPWD,
+      </if>
+      <if test="usex != null" >
+        USEX,
+      </if>
+      <if test="ubirth != null" >
+        UBIRTH,
+      </if>
+      <if test="utel != null" >
+        UTEL,
+      </if>
+      <if test="uadd != null" >
+        UADD,
+      </if>
+      <if test="utype != null" >
+        UTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null" >
+        #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        #{usex,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirth != null" >
+        #{ubirth,jdbcType=DATE},
+      </if>
+      <if test="utel != null" >
+        #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="uadd != null" >
+        #{uadd,jdbcType=VARCHAR},
+      </if>
+      <if test="utype != null" >
+        #{utype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.cxp.pojo.Users" >
+    update USERS
+    <set >
+      <if test="uname != null" >
+        UNAME = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null" >
+        UPWD = #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        USEX = #{usex,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirth != null" >
+        UBIRTH = #{ubirth,jdbcType=DATE},
+      </if>
+      <if test="utel != null" >
+        UTEL = #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="uadd != null" >
+        UADD = #{uadd,jdbcType=VARCHAR},
+      </if>
+      <if test="utype != null" >
+        UTYPE = #{utype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where USERID = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.cxp.pojo.Users" >
+    update USERS
+    set UNAME = #{uname,jdbcType=VARCHAR},
+      UPWD = #{upwd,jdbcType=VARCHAR},
+      USEX = #{usex,jdbcType=VARCHAR},
+      UBIRTH = #{ubirth,jdbcType=DATE},
+      UTEL = #{utel,jdbcType=VARCHAR},
+      UADD = #{uadd,jdbcType=VARCHAR},
+      UTYPE = #{utype,jdbcType=INTEGER}
+    where USERID = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
